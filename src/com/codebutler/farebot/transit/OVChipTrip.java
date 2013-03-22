@@ -313,7 +313,7 @@ public class OVChipTrip extends Trip {
         return OVChipTransitData.convertAmount((int)mFare);
     }
 
-    private static Station getStation(int companyCode, int stationCode) {
+    public static Station getStation(int companyCode, int stationCode) {
         try {
             SQLiteDatabase db = FareBotApplication.getInstance().getOVChipDBUtil().openDatabase();
             Cursor cursor = db.query(

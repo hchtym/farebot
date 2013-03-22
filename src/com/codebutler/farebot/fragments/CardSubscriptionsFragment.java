@@ -33,6 +33,8 @@ import com.codebutler.farebot.R;
 import com.codebutler.farebot.activities.AdvancedCardInfoActivity;
 import com.codebutler.farebot.activities.CardInfoActivity;
 import com.codebutler.farebot.card.Card;
+import com.codebutler.farebot.transit.OVChipTrip;
+import com.codebutler.farebot.transit.Station;
 import com.codebutler.farebot.transit.Subscription;
 import com.codebutler.farebot.transit.TransitData;
 
@@ -74,7 +76,19 @@ public class CardSubscriptionsFragment extends SherlockListFragment {
             String validTo   = dateFormat.format(subscription.getValidTo());
 
             ((TextView) view.findViewById(R.id.company)).setText(subscription.getShortAgencyName());
-            ((TextView) view.findViewById(R.id.name)).setText(subscription.getSubscriptionName());
+            if (subscription.getClasstype() != null) {
+            	((TextView) view.findViewById(R.id.name)).setText(subscription.getSubscriptionName() + ", " + subscription.getClasstype());
+            } else {
+            	((TextView) view.findViewById(R.id.name)).setText(subscription.getSubscriptionName());
+            }
+            if (subscription.getTripFrom() != 0) {
+                ((TextView) view.findViewById(R.id.fromto)).setVisibility(View.VISIBLE);
+                Station fromStation = OVChipTrip.getStation(subscription.getTripCompany(), subscription.getTripFrom());
+                Station toStation = OVChipTrip.getStation(subscription.getTripCompany(), subscription.getTripTo());
+                ((TextView) view.findViewById(R.id.fromto)).setText(getString(R.string.fromto_format, fromStation.getStationName(), toStation.getStationName()));
+            } else {
+            	((TextView) view.findViewById(R.id.fromto)).setVisibility(View.GONE);
+            }
             ((TextView) view.findViewById(R.id.valid)).setText(getString(R.string.valid_format, validFrom, validTo));
             ((TextView) view.findViewById(R.id.used)).setText(subscription.getActivation());
 

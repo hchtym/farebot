@@ -42,6 +42,13 @@ public abstract class Subscription implements Parcelable {
     public abstract String getSubscriptionName();
     public abstract String getActivation();
 
+    public abstract int getTripCompany();
+    public abstract String getClasstype();
+    public abstract int getTripFrom();
+    public abstract int getTripTo();
+    public abstract Date getTripDate();
+    public abstract Date getTripTime();
+
     public final int describeContents() {
         return 0;
     }
