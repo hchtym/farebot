@@ -24,9 +24,9 @@
 package com.codebutler.farebot.transit;
 
 import android.os.Parcel;
+import android.util.SparseArray;
+
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import com.codebutler.farebot.Utils;
 
@@ -47,7 +47,7 @@ public class OVChipSubscription extends Subscription {
     private final int mUsed;
     private final int mRest;
 
-    private static Map<Integer, String> sSubscriptions = new HashMap<Integer, String>() {
+    private static SparseArray<String> sSubscriptions = new SparseArray<String>() {
         /* It seems that all the IDs are unique, so why bother with the companies? */ {
             /* NS */
             put(0x0005, "OV-jaarkaart");
@@ -211,7 +211,7 @@ public class OVChipSubscription extends Subscription {
     }
 
     public static String getSubscriptionName(int subscription) {
-        if (sSubscriptions.containsKey(subscription)) {
+        if (sSubscriptions.get(subscription) != null) {
             return sSubscriptions.get(subscription);
         }
         return "Unknown Subscription (0x" + Long.toString(subscription, 16) + ")";

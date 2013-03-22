@@ -24,6 +24,8 @@
 package com.codebutler.farebot.transit;
 
 import android.os.Parcel;
+import android.util.SparseArray;
+
 import com.codebutler.farebot.FareBotApplication;
 import com.codebutler.farebot.HeaderListItem;
 import com.codebutler.farebot.ListItem;
@@ -42,9 +44,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Currency;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class OVChipTransitData extends TransitData {
     public static final int  PROCESS_PURCHASE  =  0x00;
@@ -81,7 +81,7 @@ public class OVChipTransitData extends TransitData {
         OVC_HEADER[10] = -28;
     }
 
-    private static Map<Integer, String> sAgencies = new HashMap<Integer, String>() {{
+    private static SparseArray<String> sAgencies = new SparseArray<String>() {{
         put(AGENCY_TLS,        "Trans Link Systems");
         put(AGENCY_CONNEXXION, "Connexxion");
         put(AGENCY_GVB,        "Gemeentelijk Vervoersbedrijf");
@@ -97,7 +97,7 @@ public class OVChipTransitData extends TransitData {
         put(AGENCY_DUO_ALT,    "Dienst Uitvoering Onderwijs");
     }};
 
-    private static Map<Integer, String> sShortAgencies = new HashMap<Integer, String>() {{
+    private static SparseArray<String> sShortAgencies = new SparseArray<String>() {{
         put(AGENCY_TLS,        "TLS");
         put(AGENCY_CONNEXXION, "Connexxion"); /* or Breng, Hermes, GVU */
         put(AGENCY_GVB,        "GVB");
@@ -252,14 +252,14 @@ public class OVChipTransitData extends TransitData {
     }
 
     public static String getAgencyName(int agency) {
-        if (sAgencies.containsKey(agency)) {
+        if (sAgencies.get(agency) != null) {
             return sAgencies.get(agency);
         }
         return FareBotApplication.getInstance().getString(R.string.unknown_format, "0x" + Long.toString(agency, 16));
     }
 
     public static String getShortAgencyName (int agency) {
-        if (sShortAgencies.containsKey(agency)) {
+        if (sShortAgencies.get(agency) != null) {
             return sShortAgencies.get(agency);
         }
         return FareBotApplication.getInstance().getString(R.string.unknown_format, "0x" + Long.toString(agency, 16));
@@ -317,9 +317,9 @@ public class OVChipTransitData extends TransitData {
 
         items.add(new ListItem("Banned",          ((mCredit.getBanbits() & (char)0xC0) == (char)0xC0) ? "Yes" : "No"));
 
-         if (mPreamble.getType() == 2) {
-              items.add(new HeaderListItem("Personal Information"));
-              items.add(new ListItem("Birthdate", DateFormat.getDateInstance(DateFormat.LONG).format(mInfo.getBirthdate())));
+        if (mPreamble.getType() == 2) {
+            items.add(new HeaderListItem("Personal Information"));
+            items.add(new ListItem("Birthdate", DateFormat.getDateInstance(DateFormat.LONG).format(mInfo.getBirthdate())));
         }
 
         items.add(new HeaderListItem("Credit Information"));
