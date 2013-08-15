@@ -7,7 +7,10 @@ classes/
 .DS_Store
 .idea
 local.properties
+*.iml
 *.iws
 projectFilesBackup/
-
 project.properties
+.gradle
+release.keystore
+com_crashlytics_export_strings.xml

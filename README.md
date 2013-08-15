@@ -1,6 +1,6 @@
 # FareBot
 
-View your remaining balance, recent trips, and other information from contactless public transit cards using your NFC-equipped Android phone!
+View your remaining balance, recent trips, and other information from contactless public transit cards using your NFC Android phone!
 
 ## Written By
 
@@ -15,6 +15,7 @@ View your remaining balance, recent trips, and other information from contactles
 * [Wilbert Duijvenvoorde](https://github.com/wandcode) (MIFARE Classic/OV-chipkaart)
 * [tbonang](https://github.com/tbonang) (NETS FlashPay)
 * [Marcelo Liberato](https://github.com/mliberato) (Bilhete Único)
+* [Lauri Andler](https://github.com/landler/) (HSL)
 * [The Noun Project][15] (Various icons)
 
 ## Supported Protocols
@@ -30,9 +31,10 @@ View your remaining balance, recent trips, and other information from contactles
 * [Clipper][1] - San Francisco, CA, USA
 * [EZ-Link][7] - Singapore (Not compatible with all devices)
 * [NETS FlashPay](http://www.netsflashpay.com.sg/) - Singapore
-* [Suica][9], [ICOCA][10], [PASMO][11] - Japan
+* [Suica][9], [ICOCA][10], [PASMO][11], [Edy][12] - Japan
 * [OV-chipkaart](http://www.ov-chipkaart.nl/) - Netherlands (Requires encryption keys)
 * [Bilhete Único](http://www.sptrans.com.br/bilhete_unico/) - São Paulo, Brazil (Requires encryption keys)
+* [Matkakortti][16], [HSL][17] - Finland
 
 ## Supported Phones
 
@@ -50,6 +52,9 @@ FareBot requires an NFC Android phone running 2.3 or later.
 [9]: http://en.wikipedia.org/wiki/Suica
 [10]: http://en.wikipedia.org/wiki/ICOCA
 [11]: http://en.wikipedia.org/wiki/PASMO
+[12]: http://en.wikipedia.org/wiki/Edy
 [13]: http://code.google.com/p/nfc-felica/
 [14]: http://www014.upp.so-net.ne.jp/SFCardFan/
 [15]: http://www.thenounproject.com/
+[16]: http://www.hsl.fi/EN/passengersguide/travelcard/Pages/default.aspx
+[17]: http://www.hsl.fi/EN/
